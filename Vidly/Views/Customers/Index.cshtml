@@ -11,24 +11,32 @@
 *@
 
 @{
-    ViewBag.Title = "Customers";
+    ViewBag.Title = "Clientes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Customers</h2>
+<h2>Peliculas</h2>
 <p>
-    @Html.ActionLink("New Customer", "New", "Customers", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Nuevo Cliente", "New", "Customers", null, new { @class = "btn btn-primary" })
 </p>
 
 <table id="customers" class="table table-bordered table-hover">
     <thead>
         <tr>
-            <th>Customer</th>
-            <th>Membership Type</th>
-            <th>Delete</th>
+            <th>Miembro</th>
+            <th>Tipo de membresia</th>
+            <th>Eliminado</th>
         </tr>
     </thead>
-    <tbody></tbody>
+    <tbody>
+        @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id}, null)</td>
+                    <td>@customer.MembershipType.DiscountRate%</td>
+                </tr>
+            }
+    </tbody>
 </table>
 
 @section scripts
@@ -63,7 +71,7 @@
             $("#customers").on("click", ".js-delete", function () {
                 var button = $(this);
 
-                bootbox.confirm("Are you sure you want to delete this customer?", function (result) {
+                bootbox.confirm("Esta seguro de eliminar a este cliente?", function (result) {
                     if (result) {
                         $.ajax({
                             url: "/api/customers/" + button.attr("data-customer-id"),
