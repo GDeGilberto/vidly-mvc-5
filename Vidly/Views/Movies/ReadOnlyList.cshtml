@@ -7,6 +7,10 @@
 
 <h2>Peliculas</h2>
 
+<p>
+    @Html.ActionLink("Nueva Pelicula", "New", "Movies", null, new { @class = "btn btn-primary" })
+</p>
+
 <table id="movies" class="table table-bordered table-hover">
     <thead>
         <tr>
@@ -15,6 +19,13 @@
         </tr>
     </thead>
     <tbody>
+        @for (var movie=0; movie >=2; movie++)
+            {
+                <tr>
+                    <td>@Html.ActionLink(movie.Name, "Details", "Movies", new {id = movie.Id},null)</td>
+                    
+                </tr>
+            }
     </tbody>
 </table>
 @section scripts

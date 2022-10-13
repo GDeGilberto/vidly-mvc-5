@@ -1,10 +1,10 @@
 ﻿@model Vidly.ViewModels.CustomerFormViewModel
 @{
-    ViewBag.Title = "New";
+    ViewBag.Title = "Nuevo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>New Customer</h2>
+<h2>Nuevo Cliente</h2>
 
 @using (Html.BeginForm("Save", "Customers"))
 {
@@ -26,12 +26,12 @@
     </div>
     <div class="checkbox">
         <label>
-            @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter) Subscribed to Newsletter?
+            @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter) Suscrito al boletin?
         </label>
     </div>
     @Html.HiddenFor(m => m.Customer.Id)
     @Html.AntiForgeryToken()
-    <button type="submit" class="btn btn-primary">Save</button>    
+    <button type="submit" class="btn btn-primary">Guardar</button>    
 }
 
 @section scripts
